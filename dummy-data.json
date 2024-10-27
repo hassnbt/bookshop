@@ -53,6 +53,15 @@
         "price": 13.99,
         "genreId": "4",
         "rating": 4.5
+      },
+      {
+        "id": "7",
+        "title": "To Kill a Mockingbird",
+        "authorId": "2",
+        "description": "A novel set in the Deep South and focused on themes of racial injustice and moral growth.",
+        "price": 12.99,
+        "genreId": "1",
+        "rating": 4.8
       }
     ],
     "genres": [
@@ -66,7 +75,7 @@
       { "id": "2", "name": "Harper Lee", "biography": "An American novelist known for 'To Kill a Mockingbird'." },
       { "id": "3", "name": "George Orwell", "biography": "An English novelist and essayist." },
       { "id": "4", "name": "Jane Austen", "biography": "An English novelist known for her social commentary." },
-      { "id": "5", "name": "J.D. Salinger", "biography": "An American writer known for 'The Catcher in the Rye'." },
+      { "id": "5", "name": "J.D. Salinger", "biography": "An American writer known for 'The Catcher in the Rye'hello." },
       { "id": "6", "name": "Paulo Coelho", "biography": "A Brazilian lyricist and novelist." }
     ],
     "reviews": [
