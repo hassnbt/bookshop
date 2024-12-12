@@ -30,7 +30,15 @@ export default function GenresPage({ genres }) {
 
 // Corrected `getServerSideProps` function
 export async function getServerSideProps() {
-  const genres = bookData.genres;
+
+  const gen=await fetch('http://localhost:3000/api/genre');
+
+
+
+  const data1=await gen.json();
+  console.log(data1);
+  const genres=data1.books;
+  //const genres = bookData.genres;
 
   return {
     props: { genres },

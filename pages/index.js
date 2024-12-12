@@ -112,10 +112,22 @@ else
 
 export async function  getStaticProps()
 {
-  const arr=[...bookData.books];
+  //const arr=[...bookData.books];
+  const boo=await fetch('http://localhost:3000/api/book');
 
-const arr1=[...bookData.genres];
 
+
+  const data=await boo.json();
+  console.log(data);
+  const arr=data.books;
+//const arr1=[...bookData.genres];
+const gen=await fetch('http://localhost:3000/api/genre');
+
+
+
+  const data1=await gen.json();
+  console.log(data1);
+  const arr1=data1.books;
 console.log(arr);
 console.log(arr1);
 

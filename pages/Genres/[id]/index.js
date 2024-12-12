@@ -11,12 +11,25 @@ export default function index() {
 
     useEffect(()=>
         {
-const arr=[...bookData.books];
-console.log(id);
-const arr1=arr.filter((x)=>x.genreId===id);
-console.log(arr1);
 
-setData(arr1);
+
+          if(id)
+            {
+
+fetch(`/api/genre/${id}/books`).then(res=>res.json()).then(data=>setData(data.book))
+
+
+
+
+
+
+            }
+// const arr=[...bookData.books];
+// console.log(id);
+// const arr1=arr.filter((x)=>x.genreId===id);
+// console.log(arr1);
+
+// setData(arr1);
 
 
 

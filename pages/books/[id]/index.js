@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import bookData from '../../../dummy-data.json'; // Adjust the path if necessary
 import BookDetails from '../../components/bookdet/Details';
+import axios from 'axios';
 
 export default function GenrePage({ book, author }) {
     
@@ -41,9 +42,19 @@ router.push('/books/'+bookid+'/author');
 
 // Fetch data for each book and author
 export async function getStaticProps({ params }) {
-  const book = bookData.books.find((b) => b.id === params.id);
-  const author = book ? bookData.authors.find((a) => a.id === book.authorId) : null;
+  //const book = bookData.books.find((b) => b.id === params.id);
+ // const author = book ? bookData.authors.find((a) => a.id === book.authorId) : null;
+const boo=await fetch(`http://localhost:3000/api/book/${params.id}`);
 
+
+
+const data=await boo.json();
+console.log(data);
+const book=data.book;
+const aut=await fetch(`http://localhost:3000/api/authors/${book.authorId}`);
+const data1=await aut.json();
+console.log(data1);
+const author=data1.authors;
   if (!book || !author) {
     return { notFound: true };
   }
@@ -55,7 +66,7 @@ export async function getStaticProps({ params }) {
 
 // Define all possible book paths using getStaticPaths
 export async function getStaticPaths() {
-  const paths = bookData.books.slice(0, 3).map((book) => ({
+  const paths = bookData.books.slice(0, 9).map((book) => ({
     params: { id: book.id.toString() },
   }));
 
