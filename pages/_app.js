@@ -4,65 +4,26 @@ import ThemeToggle from "./components/themebutton/Themebutton";
 import styles from "@/styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { AuthProvider, useAuth } from "./components/authcontext/authcontext";
+import Nav from "./components/Nav";
 
 export default function App({ Component, pageProps }) {
-const router=useRouter();
-  
-  function viewauthorpage()
-  {
 
-router.push('/Author');
-
-  }
-  function view()
-  {
-
-router.push('/');
-
-  }
-  function viewgenrepage()
-  {
-
-router.push('/Genres');
-
-  }
-  function Search()
-  {
-
-router.push('/Search');
-
-  }
-
-  
-
-   useEffect(() => {
-    
-    const handleRouteChange = (url) => {
-      
-      const history = JSON.parse(localStorage.getItem('routeHistory')) || [];
-      history.push(url);
-      localStorage.setItem('routeHistory', JSON.stringify(history));
-      console.log('Route changed to:', url);
-    };
-
-    
-    router.events.on('routeChangeComplete', handleRouteChange);
-    handleRouteChange(window.location.pathname);
+ const router=useRouter();
    
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-    
+  return ( 
+<>
   
-  return   <ThemeProvider>
-    <ThemeToggle/>
-    <button className={styles.butto} onClick={()=>viewauthorpage()}>View Authors</button>
-    <button className={styles.butto} onClick={()=>viewgenrepage()}>View Genres</button>
-    <button className={styles.butto} onClick={()=>view()}>View Home</button>
-    <button className={styles.butto} onClick={()=>Search()}>View Search</button>
+  <AuthProvider>
+  <ThemeProvider>
 
+  <Nav/>
 
+  
   <Component {...pageProps} />
 </ThemeProvider>;
+</AuthProvider>
+</>
+)
 }
